@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 1024 1024" fill="none">
+    <defs>
+        <!-- 主色调渐变 -->
+        <linearGradient id="mainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FF6B6B"/>
+            <stop offset="50%" style="stop-color:#FF8E53"/>
+            <stop offset="100%" style="stop-color:#FFA931"/>
+        </linearGradient>
+        <!-- 辅助渐变 -->
+        <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4A90E2"/>
+            <stop offset="100%" style="stop-color:#6DD5FA"/>
+        </linearGradient>
+        <!-- 装饰渐变 -->
+        <linearGradient id="decorGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#FF6B6B" stop-opacity="0.2"/>
+            <stop offset="100%" style="stop-color:#FFA931" stop-opacity="0.2"/>
+        </linearGradient>
+        <!-- 发光效果 -->
+        <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur"/>
+            <feColorMatrix in="blur" type="matrix" values="
+                1 0 0 0 1
+                0 1 0 0 0.5
+                0 0 1 0 0
+                0 0 0 0.5 0
+            "/>
+            <feMerge>
+                <feMergeNode in="colorize"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <style>
+        .spin {
+            animation: spin 20s linear infinite;
+            transform-origin: center;
+        }
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+    </style>
+
+    <!-- 背景装饰 -->
+    <g class="spin" opacity="0.1">
+        <path d="M512 100 A412 412 0 1 0 512 924 A412 412 0 1 0 512 100" 
+              stroke="url(#decorGrad)" 
+              stroke-width="2" 
+              fill="none"/>
+        <path d="M512 150 A362 362 0 1 0 512 874 A362 362 0 1 0 512 150" 
+              stroke="url(#decorGrad)" 
+              stroke-width="1" 
+              fill="none"/>
+    </g>
+
+    <!-- 主体Logo -->
+    <g class="float">
+        <!-- 主要形状 -->
+        <path d="
+            M 512 200
+            L 812 400
+            A 50 50 0 0 1 812 471
+            L 662 571
+            L 812 671
+            A 50 50 0 0 1 812 742
+            L 512 942
+            L 212 742
+            A 50 50 0 0 1 212 671
+            L 362 571
+            L 212 471
+            A 50 50 0 0 1 212 400
+            L 512 200
+            Z"
+            fill="url(#mainGrad)"
+            filter="url(#neonGlow)"/>
+
+        <!-- 内部装饰 -->
+        <path d="
+            M 512 300
+            L 662 400
+            L 512 500
+            L 362 400
+            Z"
+            fill="url(#accentGrad)"
+            class="pulse"/>
+    </g>
+
+    <!-- 点缀元素 -->
+    <g class="pulse">
+        <circle cx="512" cy="200" r="10" fill="#FFA931"/>
+        <circle cx="512" cy="942" r="10" fill="#FF6B6B"/>
+        <circle cx="212" cy="571" r="10" fill="#4A90E2"/>
+        <circle cx="812" cy="571" r="10" fill="#6DD5FA"/>
+    </g>
+</svg> 
